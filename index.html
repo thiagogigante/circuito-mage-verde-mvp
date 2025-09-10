@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <link rel="icon" type="image/png" href=".assets/favicon.png">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Circuito Magé Verde</title>
+  
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/src/style.css">
+
+     
+
+</head>
+<body class="bg-light">
+
+  <!-- SPLASH SCREEN -->
+  <div id="splash">
+    <img src="assets/logo.png" alt="Logo Circuito Magé Verde">
+  </div>
+
+  <!-- CONTEÚDO PRINCIPAL (TELA DE LOGIN) -->
+  <div class="container d-flex flex-column justify-content-center align-items-center vh-100" id="login-screen" style="display:none;">
+    <img src="assets/capela-nosso-senhor-do-bonfim.jpg" class="img-fluid rounded-3 mb-3" alt="Imagem Magé">
+    <h3 class="text-center mb-2">Seja bem-vindo!</h3>
+    <p class="text-center">O Circuito Verde trás pra você a melhor forma de conhecer Magé!</p>
+    
+    <button class="btn btn-light border w-100 mb-2">
+      <img src="assets/google-icon.png" width="20" class="me-2"> Continuar com o Google
+    </button>
+
+    <span class="text-muted">ou</span>
+
+    <input type="email" class="form-control mt-2" placeholder="E-mail">
+    <input type="password" class="form-control mt-2" placeholder="Senha">
+
+    <a href="src/home.html"><button class="btn btn-success w-100 mt-3">ENTRAR</button></a>
+
+    <div class="mt-2">
+      <a href="#">Esqueci minha senha</a> | <a href="#">Novo Cadastro</a>
+    </div>
+  </div>
+
+  <script defer src="./src/script.js"></script>
+
+</body>
+</html>
