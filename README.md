@@ -50,16 +50,42 @@ Este projeto é de caráter acadêmico e sem fins lucrativos.
 * GitHub Pages (deploy)
 
 ---
-## 🚀 Como Executar
+## 👨‍🏫 Instruções de Uso:
 
-1. Clone este repositório:
+Certifique-se de ter o **Node.js** instalado no seu ambinte.
+Clone este repositório:
 
-   ```bash
-   git clone https://github.com/usuario/circuito-verde-mage.git
-   ```
-2. Abra o arquivo `index.html` em seu navegador.
-3. Explore o mapa, eventos e trilhas! 🌿
+ ```bash
+ git clone https://github.com/thiagogigante/circuito-mage-verde-mvp.git
+ ```
+   
+Entre no diretório do projeto
 
+```powershell
+cd circuito-mage-verde-mvp
+```
+
+Instale as dependências
+
+```powershell
+npm install
+```
+
+Inicie o servidor
+
+```powershell
+npm run dev
+```
+
+A aplicação estará disponível em: http://localhost:5173
+
+
+### Build
+
+```powershell
+npm run build
+npm run preview
+```
 ---
 ## 💡 Prototipação
 
@@ -78,3 +104,4 @@ Este projeto é de caráter acadêmico e sem fins lucrativos.
 👨‍💻 Autores
 🤖 Tecnologias aplicadas
 💡 Prototipação
+
