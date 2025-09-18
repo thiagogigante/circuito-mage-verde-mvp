@@ -1,116 +1,39 @@
- 
-     /* <style> */
-      /* SPLASH SCREEN */
-    #splash {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: #ccd470; /* mesma cor do fundo da tela */
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 9999;
-      transition: opacity 1s ease;
-    }
-    #splash.fade-out {
-      opacity: 0;
-      pointer-events: none;
-    }
-    #splash img {
-      width: 150px;
-      animation: zoom-in 2.5s ease forwards;
-    }
-    @keyframes zoom-in {
-      0% { transform: scale(0.5); opacity: 0; }
-      100% { transform: scale(1); opacity: 1; }
-    }
+/* Mobile-first theme and reset */
+:root{
+  /* Light, elegant green palette */
+  --color-bg: #f7faf7;           /* page backdrop around the app */
+  --color-text: #213528;          /* primary text */
+  --color-muted: #6c7a6f;         /* secondary text */
+  --color-primary: #7fb49c;       /* accent */
+  --color-primary-soft: #eef6f1;  /* subtle accent bg */
+  --color-primary-deep: #1f6f54;  /* deep accent (buttons/menu) */
+  --color-surface: #ffffff;       /* app surface */
+  --color-surface-2: #f5f7f6;     /* inputs/search */
+  --color-surface-3: #e2e9e4;     /* borders/dividers */
+  --color-card: #f8fbf9;          /* cards like login container */
 
-   body {
-      background-color: #ccd470;
-    }
-    .categoria-icon {
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      background: #4A5A3D;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin: 0 5px;
-      color: white;
-    }
-    .bottom-nav {
-      background: white;
-      display: flex;
-      justify-content: space-around;
-      padding: 10px 0;
-      border-top: 1px solid #ddd;
-    }
-    .bottom-nav a {
-      color: #4A5A3D;
-      text-decoration: none;
-      font-size: 14px;
-      text-align: center;
-    }
-    .bottom-nav a.active {
-      font-weight: bold;
-    }
+  /* Radii & shadows */
+  --radius-sm: .5rem;
+  --radius-md: .8rem;
+  --radius-lg: 1rem;
+  --shadow-sm: 0 1px 2px rgba(0,0,0,.06);
+  --shadow-md: 0 4px 14px rgba(0,0,0,.08);
+  --shadow-lg: 0 10px 30px rgba(0,0,0,.12);
 
-    /* HOME */
-      
-        /* Fundo suave em verde-claro */
-    .bg-light-green {
-      background-color: #eaf5ec;
-    }
-
-    section {
-     background-color: #d3e0b4
-    }
-
-    /* Scroll horizontal mais discreto nas categorias */
-      
-    section .d-flex::-webkit-scrollbar {
-      display: none;
-      
-    }
-
-    /* Card título menor em mobile */
-    .card-title {
-      font-size: 1rem;
-    }
-
-    /* Ajuste do menu inferior */
-    footer a {
-      text-decoration: none;
-      flex: 1;
-    }
-    footer a div {
-      font-size: 1.5rem;
-    }
-    footer a small {
-      display: block;
-      font-size: 0.8rem;
-    }
-
-/* Wrapper que controla o tamanho da área da imagem */
-.card-img-top-wrapper {
-  width: 100%;
-  height: 300px; /* altura fixa, ajustável ao seu gosto */
-  overflow: hidden;
-  border-top-left-radius: .375rem; /* mesmo raio da classe card */
-  border-top-right-radius: .375rem;
+  /* Gradients */
+  --grad-primary: linear-gradient(135deg, #1f6f54 0%, #2b8f6f 100%);
+  --grad-soft: linear-gradient(180deg, rgba(127,180,156,.12), rgba(255,255,255,0));
 }
 
-/* A imagem se adapta ao espaço definido */
-.card-img-top-wrapper img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* preenche o espaço sem deformar */
-}
+* { box-sizing: border-box; }
+html, body, #app{ height:100%; }
+body{ margin:0; background: var(--color-bg); font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif; color: var(--color-text); }
+img{ max-width:100%; display:block; }
+button, input{ font-family: inherit; }
 
+#app{ max-width:480px; margin:0 auto; background: var(--color-surface); min-height:100%; box-shadow: 0 0 1px rgba(0,0,0,.04), 0 8px 30px rgba(0,0,0,.05); border-left: 1px solid rgba(0,0,0,.03); border-right: 1px solid rgba(0,0,0,.03); }
 
-    /* </style> */
+/* Smooth interactions */
+:root, button, input, .chip, .card, .bottom-nav, .menu, .topbar, .hero, .map-box { transition: all .25s ease; }
 
-    
+.sr-only{ position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); border:0; }
