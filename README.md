@@ -45,9 +45,11 @@ Este projeto é de caráter acadêmico e sem fins lucrativos.
 ---
 ## 🛠️ Tecnologias Utilizadas
 
-* HTML5, CSS3, JavaScript
-* \[Framework / Biblioteca se usaram, ex: React, Bootstrap]
-* GitHub Pages (deploy)
+- [Vite](https://vitejs.dev/) - Ferramenta de build e servidor de desenvolvimento com HMR rápido para o front-end.
+- [Vue 3](https://vuejs.org/) - Framework progressivo JavaScript para construção da interface (SPA) com Composition API e Single File Components.
+- [Vue Router](https://router.vuejs.org/) - Roteamento no cliente para navegação entre páginas (Início, Trilhas, Eventos, Salvos, Perfil, etc.).
+- [JavaScript](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript) - Linguagem base para a lógica do aplicativo.
+- [HTML5 & CSS3](https://developer.mozilla.org/pt-BR/docs/Web/HTML) - Marcação e estilos da aplicação.
 
 ---
 ## 👨‍🏫 Instruções de Uso:
@@ -104,4 +106,5 @@ npm run preview
 👨‍💻 Autores
 🤖 Tecnologias aplicadas
 💡 Prototipação
+
 
