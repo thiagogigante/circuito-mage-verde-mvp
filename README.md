@@ -91,20 +91,9 @@ npm run preview
 ---
 ## 💡 Prototipação
 
-*(coloca prints ou gifs do app aqui quando tiver pronto)*
+<p align="center">
+  <img alt="Protótipo" src="./docs/imagens/PROTOTIPO.png" width="50%">
+</p>
 
------------------------------------------ [ RECICLANDO ICONS - EXCLUIR ] -------------
-
-📑 Apresentação
-🚀 Metodologias Ágeis aplicadas
-⚠️ Situação Problema (MVP DEFINIDO)
-🎯 Objetivos
-👥 Público-Alvo da Solução
-🆘 Dores do público-alvo
-🔐 Variáveis de ambiente
-👨‍🏫 Instruções de Uso
-👨‍💻 Autores
-🤖 Tecnologias aplicadas
-💡 Prototipação
 
 
