@@ -12,6 +12,7 @@ function goLogin(){ router.push('/login') }
 
 <template>
   <header class="topbar">
+    <img src="../assets/ICONE_COM_FUNDO.png" alt="Circuito Magé Verde" class="logo" />
     <button v-if="props.showMenu" class="icon-btn" aria-label="menu" @click="$emit('toggle-menu')">
       <MenuIcon :size="22" />
     </button>
@@ -28,6 +29,7 @@ function goLogin(){ router.push('/login') }
 
 <style scoped>
 .topbar { display:flex; align-items:center; gap:.5rem; padding:.6rem .9rem; background: var(--color-surface); }
+.logo { height: 32px; width: 32px; object-fit: contain; }
 .icon-btn { background: transparent; border:none; color: var(--color-text); display:grid; place-items:center; padding:.3rem; border-radius:.5rem; }
 .icon-btn:hover{ background: var(--color-surface-2); }
 .search { flex:1; display:flex; align-items:center; gap:.5rem; background: var(--color-surface-2); border-radius: 999px; padding:.5rem .7rem; border:1px solid var(--color-surface-3); }

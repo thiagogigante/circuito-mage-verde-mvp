@@ -1,10 +1,14 @@
 <script setup>
 import { useRouter } from 'vue-router'
 import { useAuth } from '../composables/useAuth'
-import { Mountain } from 'lucide-vue-next'
+import { Mountain, ArrowLeft } from 'lucide-vue-next'
 
 const router = useRouter()
 const { login } = useAuth()
+
+function goBack() {
+  router.back()
+}
 
 let email = ''
 let password = ''
@@ -21,6 +25,9 @@ async function onSubmit(e){
 
 <template>
   <main class="login-screen">
+    <button class="back-btn" @click="goBack" aria-label="Voltar">
+      <ArrowLeft :size="20" />
+    </button>
     <div class="hero-img" role="img" aria-label="Natureza de Magé" />
     <h1>Seja bem-vindo!</h1>
     <p class="subtitle">O Circuito Verde traz pra você a melhor forma de conhecer Magé!</p>
@@ -44,7 +51,9 @@ async function onSubmit(e){
 </template>
 
 <style scoped>
-.login-screen{ max-width:420px; margin:0 auto; padding: 1rem; display:flex; flex-direction:column; align-items:center; gap:1rem; background: var(--color-card); border-radius: var(--radius-lg); margin-top:1rem; box-shadow: var(--shadow-md); }
+.login-screen{ max-width:420px; margin:0 auto; padding: 1rem; display:flex; flex-direction:column; align-items:center; gap:1rem; background: var(--color-card); border-radius: var(--radius-lg); margin-top:1rem; box-shadow: var(--shadow-md); position: relative; }
+.back-btn{ position: absolute; top: 1rem; left: 1rem; background: rgba(255,255,255,0.9); border: none; border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; color: var(--color-text); cursor: pointer; box-shadow: var(--shadow-sm); transition: all 0.2s ease; }
+.back-btn:hover{ background: rgba(255,255,255,1); transform: translateY(-1px); box-shadow: var(--shadow-md); }
 .hero-img{ width:100%; aspect-ratio: 1/1; background:
   linear-gradient(180deg, rgba(0,0,0,.25), rgba(0,0,0,.05)),
   url('https://www.rj.gov.br/seiop/sites/default/files/imagem_noticias/CAPA%20SITE%20BASE%20%283%29.png') left -5em center/cover; border-radius: calc(var(--radius-md) + .1rem); }
