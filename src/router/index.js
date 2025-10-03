@@ -8,6 +8,7 @@ import Perfil from '../views/Perfil.vue'
 import Gerenciar from '../views/Gerenciar.vue'
 import Eventos from '../views/Eventos.vue'
 import EventoDetail from '../views/EventoDetail.vue'
+import Pesquisa from '../views/Pesquisa.vue'
 
 function isAuthenticated() {
   try {
@@ -27,6 +28,7 @@ const router = createRouter({
   { path: '/', name: 'inicio', component: Inicio },
   { path: '/trilhas', name: 'trilhas', component: Home },
   { path: '/eventos', name: 'eventos', component: Eventos },
+  { path: '/pesquisa', name: 'pesquisa', component: Pesquisa },
   { path: '/salvos', name: 'salvos', component: Salvos },
   { path: '/perfil', name: 'perfil', component: Perfil },
   { path: '/gerenciar', name: 'gerenciar', component: Gerenciar },

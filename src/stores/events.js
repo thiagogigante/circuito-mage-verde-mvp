@@ -8,7 +8,11 @@ import imgKleberMonteiro from '../assets/events/festa_nsra_piedade_2025_klebermo
 import imgMinisterioPorCristo from '../assets/events/festa_nsra_piedade_2025_ministerioporcristoE1409-2030.jpg'
 
 const favStorage = useLocalStorage('event_favorites', [])
+const extraStorage = useLocalStorage('events_extra', [])
+const removedStorage = useLocalStorage('events_removed', [])
 const favoritesRef = ref(favStorage.get() || [])
+// Trigger reativo para forçar atualização das listas
+const updateTrigger = ref(0)
 
 // Programação musical da Festa de Nossa Senhora da Piedade 2025 (Magé/RJ)
 // Datas/horários inferidos a partir dos nomes dos arquivos de imagem (A/B/C/D/E 1209/1309/1409).
@@ -56,8 +60,15 @@ const sampleEvents = [
 ]
 
 export function useEventsStore(){
-  const all = () => sampleEvents
-  const getById = (id) => sampleEvents.find(e => e.id === id)
+  const all = () => {
+    // Usar trigger para forçar reatividade
+    updateTrigger.value
+    const removed = new Set(removedStorage.get() || [])
+    const filteredSample = sampleEvents.filter(e => !removed.has(e.id))
+    const extras = extraStorage.get() || []
+    return [...filteredSample, ...extras].sort((a, b) => new Date(b.date) - new Date(a.date))
+  }
+  const getById = (id) => all().find(e => e.id === id)
   const getFavorites = () => favoritesRef.value
   const isFavorite = (id) => favoritesRef.value.includes(id)
   const toggleFavorite = (id) => {
@@ -68,5 +79,45 @@ export function useEventsStore(){
     favStorage.set(next)
     return next
   }
-  return { all, getById, getFavorites, isFavorite, toggleFavorite }
+  const search = (query = '') => {
+    if (!query.trim()) return all()
+    const q = query.toLowerCase()
+    return all().filter(event => 
+      event.name.toLowerCase().includes(q) ||
+      event.location?.toLowerCase().includes(q) ||
+      event.description?.toLowerCase().includes(q)
+    )
+  }
+  const addEvent = (event) => {
+    const extras = extraStorage.get() || []
+    const exists = extras.find(e => e.id === event.id) || sampleEvents.find(s => s.id === event.id)
+    if (exists) throw new Error('ID já existe')
+    extraStorage.set([...extras, event])
+    updateTrigger.value++
+    return event
+  }
+  const removeEvent = (id) => {
+    // Remover de extras, ou marcar removido se for sample
+    const extras = extraStorage.get() || []
+    const nextExtras = extras.filter(e => e.id !== id)
+    if (nextExtras.length !== extras.length) {
+      extraStorage.set(nextExtras)
+      console.log('Evento removido dos extras:', id)
+    } else {
+      const removed = new Set(removedStorage.get() || [])
+      removed.add(id)
+      removedStorage.set([...removed])
+      console.log('Evento marcado como removido:', id)
+    }
+    // Forçar reavaliação removendo do localStorage de favoritos se existir
+    const currentFavs = favoritesRef.value
+    if (currentFavs.includes(id)) {
+      const newFavs = currentFavs.filter(fav => fav !== id)
+      favoritesRef.value = newFavs
+      favStorage.set(newFavs)
+    }
+    updateTrigger.value++
+    return true
+  }
+  return { all, getById, getFavorites, isFavorite, toggleFavorite, search, addEvent, removeEvent }
 }

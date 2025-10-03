@@ -33,6 +33,13 @@ button, input{ font-family: inherit; }
 
 #app{ max-width:480px; margin:0 auto; background: var(--color-surface); min-height:100%; box-shadow: 0 0 1px rgba(0,0,0,.04), 0 8px 30px rgba(0,0,0,.05); border-left: 1px solid rgba(0,0,0,.03); border-right: 1px solid rgba(0,0,0,.03); }
 
+/* Melhor experiência em desktop */
+@media (min-width: 768px) {
+  #app { max-width: 1200px; border-radius: 0; border-left: none; border-right: none; box-shadow: none; }
+  body { background: var(--color-bg); }
+}
+@media (min-width: 1200px) { #app { max-width: 1400px; } }
+
 /* Smooth interactions */
 :root, button, input, .chip, .card, .bottom-nav, .menu, .topbar, .hero, .map-box { transition: all .25s ease; }
 

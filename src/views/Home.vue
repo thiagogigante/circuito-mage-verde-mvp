@@ -48,15 +48,27 @@ watch(() => route.query.category, () => applyQueryCategory())
 
   <CategoryChips :items="categories" v-model="category" />
 
-  <section class="list">
-    <PlaceCard v-for="p in places" :key="p.id" :place="p" :isFav="isFav(p)" @toggle-fav="toggleFav" @open="goToDetail" />
-  </section>
+  <div class="main-content">
+    <section class="list">
+      <PlaceCard v-for="p in places" :key="p.id" :place="p" :isFav="isFav(p)" @toggle-fav="toggleFav" @open="goToDetail" />
+    </section>
+  </div>
 
   <BottomNav active="trilhas" />
 </template>
 
 <style scoped>
+.main-content { }
 .list{ display:grid; grid-template-columns: 1fr 1fr; gap:.75rem; padding: .5rem .75rem 5rem; }
+
+/* Responsividade melhorada */
 @media (min-width:480px){ .list{ grid-template-columns: repeat(2, 1fr); } }
 @media (min-width:720px){ .list{ grid-template-columns: repeat(3, 1fr); max-width:900px; margin:0 auto; } }
+@media (min-width: 768px) { 
+  .main-content { max-width: 1200px; margin: 0 auto; }
+  .list { padding: 1rem 2rem 2rem; grid-template-columns: repeat(4, 1fr); gap: 1rem; max-width: none; }
+}
+@media (min-width: 1200px) { 
+  .list { grid-template-columns: repeat(5, 1fr); gap: 1.25rem; }
+}
 </style>

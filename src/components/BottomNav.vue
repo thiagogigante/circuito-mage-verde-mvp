@@ -36,8 +36,55 @@ function go(path){ router.push(path) }
 </template>
 
 <style scoped>
-.bottom-nav{ position:fixed; bottom:0; left:0; right:0; height:64px; background:#fff; border-top:1px solid var(--color-surface-3); display:grid; grid-template-columns: repeat(5,1fr); backdrop-filter: saturate(1.2) blur(6px); box-shadow: 0 -2px 10px rgba(0,0,0,.04); }
-.bottom-nav button{ display:flex; flex-direction:column; align-items:center; justify-content:center; gap:.25rem; background:transparent; border:none; color: var(--color-muted); font-size:.75rem; transform: translateY(0); }
+.bottom-nav{ position:fixed; bottom:0; left:0; right:0; height:64px; background:#fff; border-top:1px solid var(--color-surface-3); display:grid; grid-template-columns: repeat(5,1fr); backdrop-filter: saturate(1.2) blur(6px); box-shadow: 0 -2px 10px rgba(0,0,0,.04); z-index: 1000; }
+.bottom-nav button{ display:flex; flex-direction:column; align-items:center; justify-content:center; gap:.25rem; background:transparent; border:none; color: var(--color-muted); font-size:.75rem; transform: translateY(0); cursor: pointer; }
 .bottom-nav button:hover{ transform: translateY(-1px); }
 .bottom-nav button.active{ color: var(--color-primary-deep); font-weight:600; transform: translateY(-2px); }
+
+/* Em desktop, transformar em menu flutuante à esquerda */
+@media (min-width: 768px) {
+  .bottom-nav { 
+    position: fixed; 
+    left: 1rem; 
+    top: 50%; 
+    transform: translateY(-50%);
+    bottom: auto; 
+    right: auto; 
+    width: auto; 
+    height: auto; 
+    background: rgba(255, 255, 255, 0.95); 
+    border: 1px solid var(--color-surface-3); 
+    border-radius: 1rem; 
+    box-shadow: var(--shadow-lg); 
+    backdrop-filter: saturate(1.2) blur(10px); 
+    display: flex; 
+    flex-direction: column; 
+    padding: 0.75rem 0; 
+    gap: 0.25rem;
+    z-index: 1000;
+  }
+  .bottom-nav button { 
+    flex-direction: row; 
+    gap: .75rem; 
+    padding: .75rem 1rem; 
+    border-radius: .75rem; 
+    font-size: .85rem; 
+    margin: 0 .5rem;
+    min-width: 140px;
+    justify-content: flex-start;
+  }
+  .bottom-nav button:hover { 
+    background: var(--color-surface-2); 
+    transform: translateX(2px); 
+  }
+  .bottom-nav button.active { 
+    background: var(--color-primary-soft); 
+    color: var(--color-primary-deep); 
+    transform: translateX(4px); 
+    font-weight: 600;
+  }
+}
+@media (min-width: 768px) {
+  .bottom-nav + div { display: none; }
+}
 </style>

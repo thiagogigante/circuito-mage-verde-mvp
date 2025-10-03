@@ -15,36 +15,40 @@ const store = usePlacesStore()
 
 // dados
 const categories = store.getCategories()
-const all = store.all()
+const all = computed(() => store.all()) // tornar reativo
 
-const total = all.length
+const total = computed(() => all.value.length)
 const byCat = computed(() => categories.map(c => ({
   key: c.key,
   label: c.label || (c.key || 'Todos'),
-  count: c.key ? all.filter(p => p.category === c.key).length : total
+  count: c.key ? all.value.filter(p => p.category === c.key).length : total.value
 })))
 
-const topRated = computed(() => [...all].sort((a,b) => b.rating - a.rating).slice(0,4))
+const topRated = computed(() => [...all.value].sort((a,b) => b.rating - a.rating).slice(0,4))
 
 function goToDetail(p){ router.push(`/detalhe/${p.id}`) }
+function toggleFav(p){ store.toggleFavorite(p.id) }
+const isFav = (p) => store.isFavorite(p.id)
 function onLogout(){ logout(); router.replace('/') }
 </script>
 
 <template>
   <SideMenu :open="false" :items="categories" @logout="onLogout" />
-  <TopBar @toggle-menu="() => {}" @search="() => {}" />
+  <TopBar @toggle-menu="() => {}" />
 
-  <section class="hero">
-    <div class="hero-inner">
-      <h1>Bem-vindo(a) a Magé</h1>
-      <p>Descubra trilhas, cachoeiras e história: tudo em um só lugar.</p>
-      <div class="stats">
-        <div class="stat"><Star :size="18"/> <b>{{ total }}</b> lugares</div>
-        <div class="stat"><MapPin :size="18"/> {{ byCat.find(c=>c.key==='Montanha')?.count || 0 }} montanha</div>
-        <div class="stat"><MapPin :size="18"/> {{ byCat.find(c=>c.key==='Rios')?.count || 0 }} rios</div>
+  <div class="main-content">
+    <section class="hero">
+      <div class="hero-inner">
+        <h1>Bem-vindo(a) a Magé</h1>
+        <p>Descubra trilhas, cachoeiras e história: tudo em um só lugar.</p>
+        <div class="stats">
+          <div class="stat"><Star :size="18"/> <b>{{ total }}</b> lugares</div>
+          <div class="stat"><MapPin :size="18"/> {{ byCat.find(c=>c.key==='Montanha')?.count || 0 }} montanhas</div>
+          <div class="stat"><MapPin :size="18"/> {{ byCat.find(c=>c.key==='Rios')?.count || 0 }} rios & cachoeiras</div>
+          <div class="stat"><MapPin :size="18"/> {{ byCat.find(c=>c.key==='Urbano')?.count || 0 }} locais históricos</div>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
   <section class="grid">
     <h2 class="section-title"><ListFilter :size="18"/> Categorias</h2>
@@ -59,7 +63,7 @@ function onLogout(){ logout(); router.replace('/') }
   <section class="grid">
     <h2 class="section-title"><Star :size="18"/> Destaques</h2>
     <div class="cards">
-      <PlaceCard v-for="p in topRated" :key="p.id" :place="p" :isFav="false" @open="goToDetail" />
+      <PlaceCard v-for="p in topRated" :key="p.id" :place="p" :isFav="isFav(p)" @toggle-fav="toggleFav" @open="goToDetail" />
     </div>
   </section>
 
@@ -85,6 +89,7 @@ function onLogout(){ logout(); router.replace('/') }
       </p>
     </div>
   </section>
+  </div>
 
   <BottomNav active="inicio" />
 </template>
@@ -101,9 +106,32 @@ function onLogout(){ logout(); router.replace('/') }
 .section-title{ display:flex; align-items:center; gap:.5rem; font-size:1rem; color:#2d3d2f; margin: .25rem 0 .5rem; }
 .chips{ display:flex; gap:.5rem; overflow:auto; padding-bottom:.25rem; }
 .chip{ display:flex; align-items:center; gap:.35rem; background:#fff; border:1px solid var(--color-surface-3); padding:.35rem .6rem; border-radius: 999px; box-shadow: var(--shadow-sm); color:#2d3d2f; cursor:pointer; }
+.chip:hover{ background: var(--color-surface-2); transform: translateY(-1px); }
 .chip-count{ background: var(--color-primary-soft); color: var(--color-primary-deep); font-weight:600; padding:.1rem .45rem; border-radius: 999px; border:1px solid var(--color-primary); }
 
 .cards{ display:grid; grid-template-columns: 1fr 1fr; gap:.75rem; }
+.tourism { color: var(--color-text); line-height: 1.6; }
+.tourism p { margin-bottom: 1rem; }
+
+/* Melhorias para desktop */
+@media (min-width: 768px) {
+  .main-content { max-width: 1200px; margin: 0 auto; }
+  .hero { padding: 2rem; }
+  .hero-inner { padding: 2rem; }
+  .hero-inner h1 { font-size: 2rem; }
+  .hero-inner p { font-size: 1.1rem; }
+  .stats { gap: 1rem; }
+  .stat { padding: .5rem .8rem; }
+  
+  .grid { padding: 1rem 2rem; }
+  .section-title { font-size: 1.2rem; margin: .5rem 0 1rem; }
+  .chips { gap: .75rem; }
+  .chip { padding: .5rem .8rem; }
+  
+  .cards { grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+  .tourism { columns: 2; column-gap: 2rem; font-size: 1rem; }
+}
+
 @media (min-width:480px){ .cards{ grid-template-columns: repeat(2,1fr); } }
 @media (min-width:720px){ .cards{ grid-template-columns: repeat(3,1fr); } }
 </style>

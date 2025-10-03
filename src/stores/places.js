@@ -21,6 +21,8 @@ const removedStorage = useLocalStorage('places_removed', [])
 
 // Reactive favorites (shared across all store consumers)
 const favoritesRef = ref(favStorage.get() || [])
+// Trigger reativo para forçar atualização das listas
+const updateTrigger = ref(0)
 
 const samplePlaces = [
   // Montanha
@@ -318,6 +320,8 @@ const categories = [
 
 export function usePlacesStore() {
   const all = () => {
+    // Usar trigger para forçar reatividade
+    updateTrigger.value
     const extras = extraStorage.get() || []
     const removed = new Set(removedStorage.get() || [])
     return [...samplePlaces.filter(p => !removed.has(p.id)), ...extras]
@@ -347,6 +351,7 @@ export function usePlacesStore() {
     const exists = extras.find(e => e.id === place.id) || samplePlaces.find(s => s.id === place.id)
     if (exists) throw new Error('ID já existe')
     extraStorage.set([...extras, place])
+    updateTrigger.value++
     return place
   }
   const removePlace = (id) => {
@@ -355,11 +360,21 @@ export function usePlacesStore() {
     const nextExtras = extras.filter(e => e.id !== id)
     if (nextExtras.length !== extras.length) {
       extraStorage.set(nextExtras)
+      console.log('Removido dos extras:', id)
     } else {
       const removed = new Set(removedStorage.get() || [])
       removed.add(id)
       removedStorage.set([...removed])
+      console.log('Marcado como removido:', id)
     }
+    // Forçar reavaliação removendo do localStorage de favoritos se existir
+    const currentFavs = favoritesRef.value
+    if (currentFavs.includes(id)) {
+      const newFavs = currentFavs.filter(fav => fav !== id)
+      favoritesRef.value = newFavs
+      favStorage.set(newFavs)
+    }
+    updateTrigger.value++
     return true
   }
   return { all, getById, getCategories, search, isFavorite, toggleFavorite, addPlace, removePlace }

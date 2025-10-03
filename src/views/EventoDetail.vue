@@ -17,13 +17,15 @@ const isFav = () => store.isFavorite(event.id)
 <template>
   <div class="detail">
     <div class="hero" :style="{ backgroundImage: `url(${event.image})` }">
-  <button class="back" @click="back"><ChevronLeft :size="22" /></button>
-  <button class="like" :class="{ active: isFav() }" @click="toggleFav"><Heart :size="20" /></button>
+      <button class="back" @click="back"><ChevronLeft :size="22" /></button>
+      <button class="like" :class="{ active: isFav() }" @click="toggleFav"><Heart :size="20" /></button>
     </div>
-    <div class="content">
-      <h1>{{ event.name }}</h1>
-      <p class="muted">{{ event.date }} — {{ event.location }}</p>
-      <p>{{ event.description }}</p>
+    <div class="main-content">
+      <div class="content">
+        <h1>{{ event.name }}</h1>
+        <p class="muted">{{ event.date }} — {{ event.location }}</p>
+        <p>{{ event.description }}</p>
+      </div>
     </div>
   </div>
   <BottomNav active="eventos" />
@@ -34,9 +36,30 @@ const isFav = () => store.isFavorite(event.id)
 .detail{ display:flex; flex-direction:column; }
 .hero{ position:relative; width:100%; aspect-ratio: 16/9; background-size:cover; background-position:center; box-shadow: var(--shadow-md); }
 .hero::after{ content:""; position:absolute; inset:0; background: linear-gradient(180deg, rgba(0,0,0,.25) 0%, rgba(0,0,0,.05) 40%, rgba(255,255,255,0) 100%); pointer-events:none; }
-.back{ position:absolute; top:.75rem; left:.5rem; background: rgba(0,0,0,.45); color:#fff; border:none; padding:.45rem; border-radius:.6rem; }
-.like{ position:absolute; top:.75rem; right:.5rem; background: rgba(255,255,255,.92); color: var(--color-muted); border:1px solid var(--color-surface-3); padding:.45rem; border-radius:.6rem; }
+.back{ position:absolute; top:.75rem; left:.5rem; background: rgba(0,0,0,.45); color:#fff; border:none; padding:.45rem; border-radius:.6rem; cursor: pointer; z-index: 10; }
+.back:hover{ background: rgba(0,0,0,.65); }
+.like{ position:absolute; top:.75rem; right:.5rem; background: rgba(255,255,255,.92); color: var(--color-muted); border:1px solid var(--color-surface-3); padding:.45rem; border-radius:.6rem; cursor: pointer; z-index: 10; }
+.like:hover{ background: rgba(255,255,255,1); }
 .like.active{ color: rgba(7, 95, 14, 0.99); border-color: rgba(7, 95, 14, 0.99); background: rgba(170, 236, 175, 0.75); }
+.main-content { }
 .content{ padding: .75rem; }
 .muted{ color: var(--color-muted); }
+
+/* Melhorias para desktop */
+@media (min-width: 768px) {
+  .hero { aspect-ratio: 21/9; }
+  .back, .like { top: 1.5rem; padding: .6rem; }
+  .back { left: 1.5rem; }
+  .like { right: 1.5rem; }
+  .main-content { max-width: 800px; margin: 0 auto; }
+  .content { padding: 2rem; }
+  .content h1 { font-size: 2rem; margin-bottom: 1rem; }
+  .content p { font-size: 1.1rem; line-height: 1.6; }
+  .muted { font-size: 1rem; }
+}
+
+@media (min-width: 1200px) {
+  .main-content { max-width: 1000px; }
+  .content { padding: 3rem; }
+}
 </style>

@@ -19,7 +19,22 @@ const iconComp = (name) => icons[name] || icons.Circle
 
 <style scoped>
 .chips{ display:flex; gap:.5rem; overflow:auto; padding:.5rem .75rem; }
-.chip{ flex:0 0 auto; display:flex; align-items:center; gap:.35rem; padding:.48rem .7rem; border-radius:999px; border:1px solid var(--color-surface-3); background: var(--color-surface); color: var(--color-text); box-shadow: 0 1px 0 rgba(0,0,0,.02); }
-.chip:hover{ background: var(--color-surface-2); }
+.chip{ flex:0 0 auto; display:flex; align-items:center; gap:.35rem; padding:.48rem .7rem; border-radius:999px; border:1px solid var(--color-surface-3); background: var(--color-surface); color: var(--color-text); box-shadow: 0 1px 0 rgba(0,0,0,.02); cursor: pointer; }
+.chip:hover{ background: var(--color-surface-2); transform: translateY(-1px); }
 .chip.active{ background: var(--color-primary-soft); border-color: var(--color-primary); }
+
+/* Melhorias para desktop */
+@media (min-width: 768px) {
+  .chips { 
+    padding: 1rem 2rem; 
+    gap: .75rem; 
+    justify-content: center; 
+    flex-wrap: wrap; 
+    overflow: visible; 
+  }
+  .chip { 
+    padding: .6rem 1rem; 
+    font-size: .95rem; 
+  }
+}
 </style>
