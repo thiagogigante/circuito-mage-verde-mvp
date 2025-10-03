@@ -41,7 +41,6 @@ const isFav = () => store.isFavorite(event.id)
 .like{ position:absolute; top:.75rem; right:.5rem; background: rgba(255,255,255,.92); color: var(--color-muted); border:1px solid var(--color-surface-3); padding:.45rem; border-radius:.6rem; cursor: pointer; z-index: 10; }
 .like:hover{ background: rgba(255,255,255,1); }
 .like.active{ color: rgba(7, 95, 14, 0.99); border-color: rgba(7, 95, 14, 0.99); background: rgba(170, 236, 175, 0.75); }
-.main-content { }
 .content{ padding: .75rem; }
 .muted{ color: var(--color-muted); }
 

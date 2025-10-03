@@ -87,7 +87,6 @@ function goHome(){ router.push('/') }
 .icon-btn:hover{ background: var(--color-surface-2); }
 .search { flex:1; display:flex; align-items:center; gap:.5rem; background: var(--color-surface-2); border-radius: 999px; padding:.5rem .7rem; border:1px solid var(--color-surface-3); }
 .search input { flex:1; border:none; outline:none; background: transparent; color: var(--color-text); font-size:.95rem; }
-.admin-icon{ }
 .divider { height:1px; background: var(--color-surface-3); box-shadow: 0 1px 0 rgba(255,255,255,.6) inset; }
 
 /* Melhorias para desktop */

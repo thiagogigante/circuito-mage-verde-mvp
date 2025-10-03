@@ -59,7 +59,6 @@ const isFav = () => store.isFavorite(place.id)
 .like.active{ color: rgba(7, 95, 14, 0.99); border-color: rgba(7, 95, 14, 0.99); background: rgba(170, 236, 175, 0.75); }
 .stats{ position:absolute; left:.5rem; top:40%; list-style:none; display:flex; flex-direction:column; gap:.4rem; color:#fff; padding:0; margin:0; z-index: 5; }
 .stats li{ display:flex; align-items:center; gap:.4rem; background: rgba(0,0,0,.35); padding:.35rem .5rem; border-radius:.6rem; }
-.content { }
 .info { padding: 1rem; background: #fff; }
 .info h1 { margin: 0 0 .5rem; font-size: 1.5rem; color: #2d3d2f; }
 .description { margin: 0; color: var(--color-text); line-height: 1.5; }

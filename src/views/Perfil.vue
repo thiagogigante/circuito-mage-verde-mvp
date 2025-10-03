@@ -39,7 +39,6 @@ function goToLogin(){ router.push('/login') }
 </template>
 
 <style scoped>
-.main-content { }
 .profile{ padding: 1rem; display:flex; flex-direction:column; align-items:center; gap:.5rem; }
 .avatar{ width:72px; height:72px; border-radius:50%; display:grid; place-items:center; background: var(--grad-soft); border:1px solid var(--color-surface-3); box-shadow: var(--shadow-sm); color:#2d3d2f; font-weight:700; font-size:1.25rem; }
 h1{ margin:.5rem 0 0; font-size:1.25rem; color:#2d3d2f; }

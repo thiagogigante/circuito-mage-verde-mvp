@@ -75,7 +75,6 @@ function onLogout(){ logout(); router.replace('/') }
 </template>
 
 <style scoped>
-.main-content { }
 .header{ padding: .75rem; }
 .header h1{ margin:0; font-size:1.25rem; color:#2d3d2f; }
 .muted{ color: var(--color-muted); margin:.25rem 0 0; }

@@ -58,7 +58,6 @@ watch(() => route.query.category, () => applyQueryCategory())
 </template>
 
 <style scoped>
-.main-content { }
 .list{ display:grid; grid-template-columns: 1fr 1fr; gap:.75rem; padding: .5rem .75rem 5rem; }
 
 /* Responsividade melhorada */

@@ -27,7 +27,6 @@ const isFav = (e) => store.isFavorite(e.id)
 </template>
 
 <style scoped>
-.main-content { }
 .wrap{ padding: .75rem; padding-bottom:5rem; }
 h1{ font-size:1.25rem; margin:.25rem 0 .5rem; color:#2d3d2f; }
 .list{ display:grid; grid-template-columns: 1fr 1fr; gap:.75rem; }
